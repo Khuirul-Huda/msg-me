@@ -1,0 +1,19 @@
+name: Mirror & Test
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    env:
+      MIRROR_ONE: ${{ secrets.MIRROR_ONE }}
+    steps:
+    - name: mirror repo
+      run: |
+       git clone https://github.com/Khuirul-Huda/msg-me.git
+       cd msg-me 
+       git push $MIRROR_ONE --all 2> .l
+       cd ..
+       rm -rf msg-me
