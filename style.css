@@ -1,0 +1,99 @@
+body {
+    background-color: white;
+}
+
+.hero {
+    padding: 50px;
+    position: static;
+    background-color: aliceblue;
+}
+
+.maintitle {    
+    text-align: center;
+}
+
+.container {
+    padding: 10px;
+    padding-top: 30px;
+    position: static;
+    display: flex;
+    justify-content: center;
+    
+    
+}
+input, textarea {
+    border-radius: 10px;
+    border-color: transparent;
+    border-width: 3px;
+    background: transparent;
+    outline: 0;
+    font-size: 16px;
+    padding: 5px;
+    background-color: aliceblue;
+    color: rgb(0, 0, 0);
+    /**font-family: 'Quicksand', sans-serif;**/
+    margin-bottom: 10px;
+  }
+
+  #msg-box {
+      margin-bottom: 10px;
+      height: 100px;
+  }
+
+  .btn-send {
+      padding: 5%;
+      border: 0;
+      border-radius: 10px;
+      background-color: aliceblue;
+      
+  }
+
+  .btn-send:hover {
+      background-color: white;
+  }
+/**
+  .msg-list {
+      padding: 10px;
+      padding-top: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+**/
+  .msg-item {
+      padding: 15px;
+      padding-bottom: 0;
+      padding-top: 5px;
+      padding-left: 25px;
+      background-color: aliceblue;
+      border-radius: 15px;
+      margin: 5px;
+      flex: 0 0 auto;
+      width: 200px;
+  }
+
+  .msg-content {
+      text-align: left;
+
+  }
+  .msg-meta-content {
+      font-size: 12px;
+      padding-bottom: 5px;
+  }
+
+  .flex-d {
+      flex-wrap: wrap;
+  }
+
+  /**
+  @media only screen and (min-width: 768px) {
+      .container {
+          flex-direction: row;
+      }
+  }**/
+
+  .footer {
+      text-align: center;
+      background-color: aliceblue;
+      padding: 10px;
+  }
