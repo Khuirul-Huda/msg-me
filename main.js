@@ -1,21 +1,25 @@
 const backend = "/ayang.php"
 const click = document.getElementById("sendmsg")
-click.addEventListener('click',async () => {
-    const name = document.getElementById("name-box").value 
+const placement = document.getElementById("messages")
+click.addEventListener('click', async () => {
+    const name = document.getElementById("name-box").value
     const msg = document.getElementById("msg-box").value
     await post(name, msg, backend)
-}, false )
-
-
+}, false)
+//refreshData(backend)
+get(backend)
 async function get(url) {
     await fetch(url).then((res) => {
         res.text().then((rd) => {
-            console.log(rd)
+            const dt = JSON.parse(rd)
+
+            applyData(dt)
+
         })
     }).catch((err) => {
         console.log(err)
     })
-    
+
 }
 
 async function post(name, msg, url) {
@@ -31,11 +35,29 @@ async function post(name, msg, url) {
         })
     }).then((res) => {
         res.text().then((dt) => {
-            console.log(dt)
+            //TODO: verification
+            //console.log(dt)
+            click.innerText = "Terkirim"
+            location.reload()
         })
     }).catch((err) => console.log(err))
-} 
+}
 
-async function getData() {
+async function refreshData(url) {
     //TODO: get data from backend
+    await get(url).then((res) => {
+
+        const dat = JSON.parse(res)
+        console.log(dat)
+        applyData(dat)
+    }).catch((err) => {
+        console.log(err)
+    })
+}
+
+function applyData(dataContent) {
+    for (let h = 0; h < dataContent.length; h++) {
+
+        placement.innerHTML += `<div class="msg-item"><div class="msg-val"><p class="msg-content">${atob(dataContent[h].msg)}</p></div><div class="msg-meta"><p class="msg-meta-content">${atob(dataContent[h].name)} - ${atob(dataContent[h].time)}</p></div></div>`
+    }
 }
