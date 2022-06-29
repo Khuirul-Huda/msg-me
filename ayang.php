@@ -1,15 +1,29 @@
 <?php
+date_default_timezone_set('Asia/Jakarta');
+
+    $db = new SQLite3('./database-test.db');
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    //TODO: query db
-    echo("{}"); 
+
+    $content = $db->query('SELECT * FROM main');
+    $res = array();
+    while ($tmp = $content->fetchArray(SQLITE3_ASSOC)) {
+        $res[] = $tmp;
+    }
+     echo(json_encode($res));
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $data = file_get_contents('php://input');
 $data = json_decode($data, true);
-$name = $data['name'];
-$msg = $data['msg'];
-//TODO: insert to db
+$nameVal = $data['name'];
+$msgVal = $data['msg'];
+$timeVal = date('d') . " " . date("F", mktime(0, 0, 0, date('m'), 10)) . " " . date('Y') . " " . date('H:i');
+//TODO: USE PREPARE()
+$dbInput = $db->exec("INSERT INTO main(name, msg, time) VALUES ('$nameVal', '$msgVal', '$timeVal')");
+
+
 } else {
     echo("Unsupported Method");
 }
+
 
 ?>
