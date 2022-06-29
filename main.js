@@ -1,10 +1,22 @@
+document.querySelector('#msg-box').value = ''
+document.querySelector('#name-box').value = ''
+
 const backend = "/ayang.php"
 const click = document.getElementById("sendmsg")
 const placement = document.getElementById("messages")
 click.addEventListener('click', async () => {
     const name = document.getElementById("name-box").value
     const msg = document.getElementById("msg-box").value
-    await post(name, msg, backend)
+    if (!name || !msg ) {
+        click.innerText = 'Harus diisi semuaa'
+        setTimeout(() => {
+            click.innerText = 'Kirim'
+        }, 1000);
+        return
+    } else {
+        await post(name, msg, backend)
+    }
+
 }, false)
 //refreshData(backend)
 get(backend)
@@ -38,7 +50,11 @@ async function post(name, msg, url) {
             //TODO: verification
             //console.log(dt)
             click.innerText = "Terkirim"
-            location.reload()
+            setTimeout(() => {
+                click.innerText = 'Memuat. . .'
+                location.reload()
+            }, 1000);
+            
         })
     }).catch((err) => console.log(err))
 }
