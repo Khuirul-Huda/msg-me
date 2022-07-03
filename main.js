@@ -14,7 +14,14 @@ click.addEventListener('click', async () => {
         }, 1000);
         return
     } else {
-        await post(name, msg, backend)
+        if (/^[A-Za-z0-9_., ?]+$/.test(msg) && /^[A-Za-z0-9_., ?]+$/.test(name)) {
+           await post(name, msg, backend)
+        } else {
+           click.innerText = 'Karakter tidak diijinkan'
+           setTimeout(() => {
+              click.innerText = 'Kirim'
+           }, 1000)
+        }
     }
 
 }, false)
