@@ -17,6 +17,8 @@ $data = file_get_contents('php://input');
 $data = json_decode($data, true);
 $nameVal = $data['name'];
 $msgVal = $data['msg'];
+if (!preg_match("/^[A-Za-z0-9_., ?]+$/", base64_decode($nameVal)) || !preg_match("/^[A-Za-z0-9_., ?]+$/", base64_decode($msgVal))) 
+   die("Invalid Characters");
 $timeVal = base64_encode(date('d') . " " . date("F", mktime(0, 0, 0, date('m'), 10)) . " " . date('Y') . " " . date('H:i'));
 //TODO: USE PREPARE()
 $dbInput = $db->exec("INSERT INTO main(name, msg, time) VALUES ('$nameVal', '$msgVal', '$timeVal')");
