@@ -1,7 +1,7 @@
 document.querySelector('#msg-box').value = ''
 document.querySelector('#name-box').value = ''
 
-const backend = "/ayang.php"
+const backend = "ayang.php"
 const click = document.getElementById("sendmsg")
 const placement = document.getElementById("messages")
 click.addEventListener('click', async () => {
